@@ -1,0 +1,171 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  shortDescription String
+  description      String
+  category         String
+  clientType       String
+  status           String
+  
+  technologies     String 
+  features         String 
+  
+  challenge        String?
+  solution         String?
+  result           String?
+  
+  thumbnail        String?
+  liveUrl          String?
+  githubUrl        String?
+  
+  featured         Boolean  @default(false)
+  published        Boolean  @default(false)
+  displayOrder     Int      @default(0)
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  images           ProjectImage[]
+}
+
+model ProjectImage {
+  id        String   @id @default(uuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  order     Int      @default(0)
+}
+
+model Service {
+  id           String   @id @default(uuid())
+  title        String
+  slug         String   @unique
+  description  String
+  icon         String?
+  thumbnail    String?
+  features     String 
+  published    Boolean  @default(false)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TeamMember {
+  id           String   @id @default(uuid())
+  name         String
+  designation  String
+  profileImage String?
+  bio          String
+  skills       String
+  linkedIn     String?
+  github       String?
+  socialUrl    String?
+  published    Boolean  @default(false)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Testimonial {
+  id           String   @id @default(uuid())
+  clientName   String
+  company      String?
+  designation  String?
+  photo        String?
+  testimonial  String
+  published    Boolean  @default(false)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Technology {
+  id           String   @id @default(uuid())
+  name         String
+  category     String
+  icon         String?
+  description  String?
+  published    Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Inquiry {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  phone       String
+  company     String?
+  projectType String
+  budget      String?
+  timeline    String?
+  requirement String
+  status      String   @default("NEW") 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteSetting {
+  id           String   @id @default(uuid())
+  key          String   @unique
+  value        String
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model AboutProfile {
+  id           String   @id @default(uuid())
+  name         String
+  designation  String
+  profileImage String?
+  bio          String
+  skills       String
+  experience   String?
+  socialLinks  String? 
+  visibility   Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model TimelineEntry {
+  id           String   @id @default(uuid())
+  title        String
+  company      String
+  period       String
+  description  String
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(uuid())
+  url       String
+  fileType  String
+  size      Int
+  alt       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
