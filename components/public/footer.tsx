@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           <div className="md:col-span-1 space-y-4">
             <Link href="/" className="font-bold text-xl tracking-tight">
-              RAHUL<span className="text-primary">KUMAR</span>
+              RK<span className="text-primary">INFORMATIVE</span>
             </Link>
             <p className="text-muted-foreground text-sm">
               Software Development & AI Solutions. Building custom solutions tailored to your business needs.
