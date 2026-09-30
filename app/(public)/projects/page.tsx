@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db/prisma";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Layout, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,9 +35,18 @@ export default async function ProjectsPage() {
           <Link href={`/projects/${project.slug}`} key={project.id} className="group flex flex-col h-full">
             <Card className="flex flex-col h-full overflow-hidden border-transparent transition-all hover:border-primary/50 hover:shadow-lg bg-background">
               <div className="aspect-video w-full bg-muted overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                  <Layout className="h-12 w-12 opacity-20" />
-                </div>
+                {project.thumbnail ? (
+                  <Image 
+                    src={project.thumbnail} 
+                    alt={project.title} 
+                    fill 
+                    className="object-cover transition-transform duration-700 group-hover:scale-105" 
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                    <Layout className="h-12 w-12 opacity-20" />
+                  </div>
+                )}
               </div>
               <CardHeader className="flex-grow pb-4">
                 <div className="flex justify-between items-start gap-4 mb-2">
