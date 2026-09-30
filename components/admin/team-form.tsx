@@ -91,7 +91,7 @@ export function TeamForm({ member, adminPath }: { member: any, adminPath: string
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="skills">Skills (comma separated)</Label>
+              <Label htmlFor="skills">Technical Arsenal / Skills (comma separated)</Label>
               <Textarea id="skills" name="skills" defaultValue={member.skills} rows={2} required />
             </div>
 
