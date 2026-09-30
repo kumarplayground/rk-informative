@@ -11,13 +11,14 @@ import type { Metadata, ResolvingMetadata } from "next";
 export const revalidate = 60;
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata(
-  { params }: Props,
+  props: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const params = await props.params;
   const project = await prisma.project.findUnique({
     where: { slug: params.slug },
   });
@@ -30,7 +31,8 @@ export async function generateMetadata(
   };
 }
 
-export default async function ProjectPage({ params }: Props) {
+export default async function ProjectPage(props: Props) {
+  const params = await props.params;
   const project = await prisma.project.findUnique({
     where: { slug: params.slug },
     include: { images: true }
