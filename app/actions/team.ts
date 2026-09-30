@@ -10,8 +10,7 @@ export async function deleteTeamMember(id: string) {
       where: { id }
     });
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/team`);
-    revalidatePath(`/team`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error) {
     console.error("Failed to delete team member:", error);
@@ -54,8 +53,7 @@ export async function updateTeamMember(id: string, formData: FormData) {
     }
 
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/team`);
-    revalidatePath(`/team`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error) {
     console.error("Failed to update team member:", error);

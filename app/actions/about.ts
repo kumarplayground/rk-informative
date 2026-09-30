@@ -32,9 +32,7 @@ export async function updateAboutProfile(id: string, formData: FormData) {
     });
 
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/about`);
-    revalidatePath(`/about`);
-    revalidatePath(`/`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error) {
     console.error("Failed to update profile:", error);

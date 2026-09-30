@@ -10,9 +10,7 @@ export async function deleteService(id: string) {
       where: { id }
     });
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/services`);
-    revalidatePath(`/services`);
-    revalidatePath(`/`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error) {
     console.error("Failed to delete service:", error);
@@ -53,9 +51,7 @@ export async function updateService(id: string, formData: FormData) {
     }
 
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/services`);
-    revalidatePath(`/services`);
-    revalidatePath(`/`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error: any) {
     console.error("Failed to update service:", error);

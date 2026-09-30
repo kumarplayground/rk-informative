@@ -10,9 +10,7 @@ export async function deleteProject(id: string) {
       where: { id }
     });
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/projects`);
-    revalidatePath(`/projects`);
-    revalidatePath(`/`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error) {
     console.error("Failed to delete project:", error);
@@ -58,9 +56,7 @@ export async function updateProject(id: string, formData: FormData) {
     }
 
     const adminPath = process.env.ADMIN_PATH || 'secure-panel-x7k29m';
-    revalidatePath(`/${adminPath}/projects`);
-    revalidatePath(`/projects`);
-    revalidatePath(`/`);
+    revalidatePath('/', 'layout');
     return { success: true };
   } catch (error) {
     console.error("Failed to update project:", error);

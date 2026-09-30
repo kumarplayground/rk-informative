@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Globe } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default async function TeamPage() {
           <Card key={member.id} className="overflow-hidden border-transparent transition-all hover:border-primary/50 hover:shadow-lg bg-background">
             <div className="aspect-square w-full bg-muted relative">
               {member.profileImage ? (
-                <img src={member.profileImage} alt={member.name} className="w-full h-full object-cover" />
+                <Image src={member.profileImage} alt={member.name} fill className="object-cover" />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-secondary/20">
                   <span className="text-4xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>

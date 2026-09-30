@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,9 +35,9 @@ export default async function AboutPage() {
         {/* Left Column - Sticky Profile */}
         <div className="lg:col-span-5 relative">
           <div className="sticky top-24 space-y-8">
-            <div className="aspect-square max-w-sm mx-auto lg:mx-0 bg-muted rounded-2xl overflow-hidden border">
+            <div className="aspect-square max-w-sm mx-auto lg:mx-0 bg-muted rounded-2xl overflow-hidden border relative">
               {profile.profileImage ? (
-                <img src={profile.profileImage} alt={profile.name} className="w-full h-full object-cover" />
+                <Image src={profile.profileImage} alt={profile.name} fill className="object-cover" />
               ) : (
                 <div className="w-full h-full bg-secondary/30 flex items-center justify-center">
                   <span className="text-muted-foreground text-4xl font-bold">RK</span>
