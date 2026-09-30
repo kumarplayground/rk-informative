@@ -2,9 +2,7 @@
 
 import { prisma } from "@/lib/db/prisma";
 import { revalidatePath } from "next/cache";
-import { writeFile } from "fs/promises";
-import path from "path";
-import fs from "fs";
+import { put } from "@vercel/blob";
 
 export async function updateAboutProfile(id: string, formData: FormData) {
   try {
@@ -21,18 +19,8 @@ export async function updateAboutProfile(id: string, formData: FormData) {
     // Handle Image Upload
     const file = formData.get("profileImageFile") as File;
     if (file && file.size > 0) {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      const fileName = `${Date.now()}-profile-${file.name.replace(/\s+/g, '-')}`;
-      
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
-      
-      const filePath = path.join(uploadDir, fileName);
-      await writeFile(filePath, buffer);
-      data.profileImage = `/uploads/${fileName}`;
+      const blob = await put(file.name, file, { access: 'public' });
+      data.profileImage = blob.url;
     } else {
       const existingUrl = formData.get("profileImageUrl") as string;
       if (existingUrl) data.profileImage = existingUrl;
