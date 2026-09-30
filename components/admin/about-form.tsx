@@ -22,13 +22,19 @@ export function AboutForm({ profile, adminPath }: { profile: any, adminPath: str
     setLoading(true);
     setError("");
     
-    const formData = new FormData(e.currentTarget);
-    const result = await updateAboutProfile(profile.id, formData);
-    
-    if (result.success) {
-      router.push(`/${adminPath}/about`);
-    } else {
-      setError(result.error || "Failed to update profile");
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await updateAboutProfile(profile.id, formData);
+      
+      if (result.success) {
+        router.push(`/${adminPath}/about`);
+      } else {
+        setError(result.error || "Failed to update profile");
+        setLoading(false);
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError("Network Error: The image might be too large (max 1MB limit).");
       setLoading(false);
     }
   };

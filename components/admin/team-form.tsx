@@ -22,13 +22,19 @@ export function TeamForm({ member, adminPath }: { member: any, adminPath: string
     setLoading(true);
     setError("");
     
-    const formData = new FormData(e.currentTarget);
-    const result = await updateTeamMember(member.id, formData);
-    
-    if (result.success) {
-      router.push(`/${adminPath}/team`);
-    } else {
-      setError(result.error || "Failed to save team member");
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await updateTeamMember(member.id, formData);
+      
+      if (result.success) {
+        router.push(`/${adminPath}/team`);
+      } else {
+        setError(result.error || "Failed to save team member");
+        setLoading(false);
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError("Network Error: The image might be too large (max 1MB limit).");
       setLoading(false);
     }
   };
