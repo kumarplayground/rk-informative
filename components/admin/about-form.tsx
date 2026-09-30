@@ -91,7 +91,7 @@ export function AboutForm({ profile, adminPath }: { profile: any, adminPath: str
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="skills">Skills (comma separated)</Label>
+              <Label htmlFor="skills">Technical Arsenal / Skills (comma separated)</Label>
               <Textarea id="skills" name="skills" defaultValue={profile.skills} rows={3} required />
             </div>
 
