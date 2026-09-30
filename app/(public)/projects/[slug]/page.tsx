@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowRight, ExternalLink, Layout } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
 import type { Metadata, ResolvingMetadata } from "next";
 
 export const revalidate = 60;
@@ -85,8 +86,7 @@ export default async function ProjectPage({ params }: Props) {
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="aspect-video w-full bg-muted rounded-xl overflow-hidden relative mb-16 shadow-lg border">
             {project.thumbnail ? (
-               // Will use next/image later, standard img for now if URL is given
-               <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
+               <Image src={project.thumbnail} alt={project.title} fill className="object-cover" />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-secondary/20">
                 <Layout className="h-16 w-16 opacity-20" />
