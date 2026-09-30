@@ -9,6 +9,17 @@ export async function Footer() {
     orderBy: { displayOrder: 'asc' },
     take: 4
   });
+
+  const settings = await prisma.siteSetting.findMany({
+    where: {
+      key: { in: ['contact_email', 'contact_whatsapp'] }
+    }
+  });
+
+  const getSetting = (key: string) => settings.find(s => s.key === key)?.value;
+  
+  const email = getSetting('contact_email') || 'hello@rahulkumar.dev';
+  const whatsapp = getSetting('contact_whatsapp') || '';
   return (
     <footer className="border-t bg-background/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -64,12 +75,14 @@ export async function Footer() {
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:contact@example.com" className="hover:text-foreground transition-colors">hello@rahulkumar.dev</a>
+                <a href={`mailto:${email}`} className="hover:text-foreground transition-colors">{email}</a>
               </div>
-              <div className="flex items-center gap-2">
-                <MessageSquare className="h-4 w-4" />
-                <a href="#" className="hover:text-foreground transition-colors">WhatsApp</a>
-              </div>
+              {whatsapp && (
+                <div className="flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4" />
+                  <a href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">WhatsApp</a>
+                </div>
+              )}
             </div>
           </div>
         </div>
