@@ -1116,6 +1116,7 @@ export type TimelineEntryCreateManyArgs<ExtArgs extends runtime.Types.Extensions
    * The data used to create many TimelineEntries.
    */
   data: Prisma.TimelineEntryCreateManyInput | Prisma.TimelineEntryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1134,6 +1135,7 @@ export type TimelineEntryCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * The data used to create many TimelineEntries.
    */
   data: Prisma.TimelineEntryCreateManyInput | Prisma.TimelineEntryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

@@ -1088,6 +1088,7 @@ export type MediaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * The data used to create many Media.
    */
   data: Prisma.MediaCreateManyInput | Prisma.MediaCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1106,6 +1107,7 @@ export type MediaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * The data used to create many Media.
    */
   data: Prisma.MediaCreateManyInput | Prisma.MediaCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

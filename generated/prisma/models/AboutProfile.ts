@@ -1156,6 +1156,7 @@ export type AboutProfileCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many AboutProfiles.
    */
   data: Prisma.AboutProfileCreateManyInput | Prisma.AboutProfileCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1174,6 +1175,7 @@ export type AboutProfileCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many AboutProfiles.
    */
   data: Prisma.AboutProfileCreateManyInput | Prisma.AboutProfileCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

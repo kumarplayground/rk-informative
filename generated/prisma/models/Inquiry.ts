@@ -1184,6 +1184,7 @@ export type InquiryCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Inquiries.
    */
   data: Prisma.InquiryCreateManyInput | Prisma.InquiryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1202,6 +1203,7 @@ export type InquiryCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Inquiries.
    */
   data: Prisma.InquiryCreateManyInput | Prisma.InquiryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

@@ -424,6 +424,7 @@ export type ProjectImageCreateOrConnectWithoutProjectInput = {
 
 export type ProjectImageCreateManyProjectInputEnvelope = {
   data: Prisma.ProjectImageCreateManyProjectInput | Prisma.ProjectImageCreateManyProjectInput[]
+  skipDuplicates?: boolean
 }
 
 export type ProjectImageUpsertWithWhereUniqueWithoutProjectInput = {
@@ -1203,6 +1204,7 @@ export type ProjectImageCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many ProjectImages.
    */
   data: Prisma.ProjectImageCreateManyInput | Prisma.ProjectImageCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1221,6 +1223,7 @@ export type ProjectImageCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many ProjectImages.
    */
   data: Prisma.ProjectImageCreateManyInput | Prisma.ProjectImageCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

@@ -1256,6 +1256,7 @@ export type TeamMemberCreateManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * The data used to create many TeamMembers.
    */
   data: Prisma.TeamMemberCreateManyInput | Prisma.TeamMemberCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1274,6 +1275,7 @@ export type TeamMemberCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * The data used to create many TeamMembers.
    */
   data: Prisma.TeamMemberCreateManyInput | Prisma.TeamMemberCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

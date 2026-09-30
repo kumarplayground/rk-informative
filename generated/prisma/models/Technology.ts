@@ -1144,6 +1144,7 @@ export type TechnologyCreateManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * The data used to create many Technologies.
    */
   data: Prisma.TechnologyCreateManyInput | Prisma.TechnologyCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1162,6 +1163,7 @@ export type TechnologyCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * The data used to create many Technologies.
    */
   data: Prisma.TechnologyCreateManyInput | Prisma.TechnologyCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
