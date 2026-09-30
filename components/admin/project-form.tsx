@@ -22,13 +22,19 @@ export function ProjectForm({ project, adminPath }: { project: any, adminPath: s
     setLoading(true);
     setError("");
     
-    const formData = new FormData(e.currentTarget);
-    const result = await updateProject(project.id, formData);
-    
-    if (result.success) {
-      router.push(`/${adminPath}/projects`);
-    } else {
-      setError(result.error || "Failed to update project");
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await updateProject(project.id, formData);
+      
+      if (result.success) {
+        router.push(`/${adminPath}/projects`);
+      } else {
+        setError(result.error || "Failed to update project");
+        setLoading(false);
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError("Network Error: The image might be too large (max 5MB limit).");
       setLoading(false);
     }
   };

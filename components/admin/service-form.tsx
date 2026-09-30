@@ -21,14 +21,20 @@ export function ServiceForm({ service, adminPath }: { service: any, adminPath: s
     e.preventDefault();
     setLoading(true);
     
-    const formData = new FormData(e.currentTarget);
-    const result = await updateService(service.id, formData);
-    
-    if (result.success) {
-      toast.success("Service saved successfully!");
-      router.push(`/${adminPath}/services`);
-    } else {
-      toast.error(result.error || "Failed to save service");
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await updateService(service.id, formData);
+      
+      if (result.success) {
+        toast.success("Service saved successfully!");
+        router.push(`/${adminPath}/services`);
+      } else {
+        toast.error(result.error || "Failed to save service");
+        setLoading(false);
+      }
+    } catch (err: any) {
+      console.error(err);
+      toast.error("Network Error: The image might be too large (max 5MB limit).");
       setLoading(false);
     }
   };
