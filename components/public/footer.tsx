@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { Mail, MessageSquare } from "lucide-react";
 import { FaGithub, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { prisma } from "@/lib/db/prisma";
 
-export function Footer() {
+export async function Footer() {
+  const services = await prisma.service.findMany({
+    where: { published: true },
+    orderBy: { displayOrder: 'asc' },
+    take: 4
+  });
   return (
     <footer className="border-t bg-background/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
@@ -19,10 +25,13 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/services#web" className="hover:text-foreground transition-colors">Web Development</Link></li>
-              <li><Link href="/services#mobile" className="hover:text-foreground transition-colors">Mobile Apps</Link></li>
-              <li><Link href="/services#desktop" className="hover:text-foreground transition-colors">Desktop Software</Link></li>
-              <li><Link href="/services#ai" className="hover:text-foreground transition-colors">AI & Automation</Link></li>
+              {services.map(service => (
+                <li key={service.id}>
+                  <Link href={`/services#${service.slug}`} className="hover:text-foreground transition-colors">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
