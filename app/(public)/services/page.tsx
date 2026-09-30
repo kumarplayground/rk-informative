@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Layout, Code2, Smartphone, Database, BrainCircuit, Cog } from "lucide-react";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -64,10 +65,21 @@ export default async function ServicesPage() {
               </div>
               
               <div className="aspect-square md:aspect-auto md:h-full min-h-[300px] bg-muted/30 border rounded-2xl flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
-                <div className="relative z-10 text-muted-foreground/30">
-                  <Cog className="h-32 w-32 animate-spin-slow" style={{ animationDuration: '20s' }} />
-                </div>
+                {service.thumbnail ? (
+                  <Image 
+                    src={service.thumbnail} 
+                    alt={service.title} 
+                    fill 
+                    className="object-cover transition-transform duration-700 hover:scale-105" 
+                  />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50" />
+                    <div className="relative z-10 text-muted-foreground/30">
+                      <Cog className="h-32 w-32 animate-spin-slow" style={{ animationDuration: '20s' }} />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </section>
